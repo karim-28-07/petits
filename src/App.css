@@ -1,38 +1,64 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+body{
+    background-color: white;
+    width: 100%;
+    height: 800px;
+}
+i{font-size: 80px;
+-webkit-transition: all 0.5s 0s ease-out;
+-moz-transition: all 0.5s 0s ease-out;
+-o-transition: all 0.5s 0s ease-out;
+transition: all 0.5s 0s ease-out;}
+
+#jeu{
+    position: absolute;
+    padding: 20px;
+    margin: 70px;
+     width: 400px;
+    height: 400px;
+    background-color: cadetblue;
+    border: 2px outset white;
+    border-radius: 20px;
+    -webkit-box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.4); 
+box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.4);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+#monDee{
+    position: absolute;
+    width: 300px;
+    margin-left: 50px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+#col1{
+     display: flex;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+#col2{
+    float: right;
+     display: grid;
+    grid-template-columns: 1fr;
+     grid-row: 1fr 1fr 1fr 1fr 1fr 1fr;
 }
 
-.App-link {
-  color: #61dafb;
+#col3{
+    position: absolute;
+    bottom: 20px;
+     display: flex;
+    flex-direction: row-reverse;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#col4{
+    float: left;
+     display: flex;
+    flex-direction: column-reverse;
+}
+
+button{
+    font-family: 'Pacifico', cursive;
+    font-size: 32px;
+    border-radius: 20px;
+}
+p{
+    font-size: 32px;
+    font-family: 'Pacifico', cursive;
 }
