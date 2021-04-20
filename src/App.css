@@ -14,8 +14,8 @@ transition: all 0.5s 0s ease-out;}
     position: absolute;
     padding: 20px;
     margin: 70px;
-     width: 400px;
-    height: 400px;
+     width: 800px;
+    height: 800px;
     background-color: cadetblue;
     border: 2px outset white;
     border-radius: 20px;
@@ -57,8 +57,19 @@ button{
     font-family: 'Pacifico', cursive;
     font-size: 32px;
     border-radius: 20px;
+    
 }
 p{
     font-size: 32px;
     font-family: 'Pacifico', cursive;
+}
+
+.b1{
+    float: left;
+    margin: 0 37vmax 0 5vmax;
+    background-color: cornflowerblue;
+}
+.b2{
+    
+    background-color: #ec4444;
 }
