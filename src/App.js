@@ -1,6 +1,7 @@
 import React from "react";
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css'
+import Circle from "./components/Circle.jsx"
 
 class App extends React.Component {
   constructor(props) {
@@ -15,17 +16,12 @@ class App extends React.Component {
     this.lancerDee = this.lancerDee.bind(this)
   }
 
-  
   lancerDee() {
-    if (this.state.total===true){
-       const dee = Math.floor(Math.random() * (6 - 1)) + 1;
-    console.log(dee)
+    const dee = Math.floor(Math.random() * (6 - 1)) + 1;
 
     this.setState({
       numCase: this.state.numCase + dee
     })
-    }
-   
   }
   lancerDee2() {
     const dee = Math.floor(Math.random() * (6 - 1)) + 1;
@@ -39,16 +35,23 @@ class App extends React.Component {
 
   // Bonus
   // go() {
-  //  if(dee===6){
-  //    return this.setState({total:true})
+  //   if (dee === 6) {
 
-  //  }
-    
-  //   else {
+
+  //   } else {
   //     window.alert("noob")
   //   }
   // }
 
+  renderCircles() {
+    let circlesArray = []       
+
+    for (let index = 1; index <= 10; index++) {
+        circlesArray.push(<Circle circleColor={this.state.numCase == index ? "white" : "black"}/>)
+    }
+
+    return circlesArray
+  }
 
   render() {
 
@@ -59,8 +62,10 @@ class App extends React.Component {
       <div>
         <div id="jeu">
           <div id="col1">
-            <i class="fas fa-circle" style={{color: this.state.numCase == 1 ? "white" : "black"}}></i>
-            <i class="fas fa-circle" style={{color: this.state.numCase == 2 ? "white" : "black"}}></i>
+
+            {/* <i class="fas fa-circle" style={{color: this.state.numCase == 1 ? "white" : "black"}}></i> */}
+
+            {/* <i class="fas fa-circle" style={{color: this.state.numCase == 2 ? "white" : "black"}}></i>
             <i class="fas fa-circle" style={{color: this.state.numCase == 3 ? "white" : "black"}}></i>
             <i class="fas fa-circle" style={{color: this.state.numCase == 4 ? "white" : "black"}}></i>
             <i class="fas fa-circle" style={{color: this.state.numCase == 5 ? "white" : "black"}}></i>
@@ -68,7 +73,9 @@ class App extends React.Component {
             <i class="fas fa-circle" style={{color: this.state.numCase == 7 ? "white" : "black"}}></i>
             <i class="fas fa-circle" style={{color: this.state.numCase == 8 ? "white" : "black"}}></i>
             <i class="fas fa-circle" style={{color: this.state.numCase == 9 ? "white" : "black"}}></i>
-            <i class="fas fa-circle" style={{color: this.state.numCase == 10 ? "white" : "black"}}></i>
+            <i class="fas fa-circle" style={{color: this.state.numCase == 10 ? "white" : "black"}}></i> */}
+
+            {this.renderCircles()}
           </div>
 
           <div id="col2">
@@ -105,6 +112,38 @@ class App extends React.Component {
             <i class="fas fa-circle" style={{color: this.state.numCase == 35 ? "white" : "black"}}></i>
             <i class="fas fa-circle" style={{color: this.state.numCase == 36 ? "white" : "black"}}></i>
           </div>
+
+          <div className="containerP1">
+              <div className="divchildP1">
+          <div >
+            <i class="fas fa-circle" style={{color: this.state.numCase < 37 ? "white" : "black"}}></i>
+            <i class="fas fa-circle" style={{color: this.state.numCase == 2 ? "white" : "black"}}></i>
+   
+          </div>
+
+          <div >
+            <i class="fas fa-circle" style={{color: this.state.numCase == 11 ? "white" : "black"}}></i>
+            <i class="fas fa-circle" style={{color: this.state.numCase == 12 ? "white" : "black"}}></i>
+           </div>
+          </div>
+          </div>
+
+          <div className="containerP2">
+              <div className="divchildP2">
+          <div >
+            <i class="fas fa-circle" style={{color: this.state.numCase == 1 ? "white" : "black"}}></i>
+            <i class="fas fa-circle" style={{color: this.state.numCase == 2 ? "white" : "black"}}></i>
+   
+          </div>
+
+          <div >
+            <i class="fas fa-circle" style={{color: this.state.numCase == 11 ? "white" : "black"}}></i>
+            <i class="fas fa-circle" style={{color: this.state.numCase == 12 ? "white" : "black"}}></i>
+           </div>
+          </div>
+          </div>
+
+          
 
         </div>
 
