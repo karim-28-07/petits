@@ -9,37 +9,36 @@ class App extends React.Component {
 
     this.state = {
       total: 0,
+      numDee: 0,
       numCase: 0,
+      numDee2: 0,
       numCase2: 0,
-      player1Tokens: [false, false, false, false]
-      
+      player1Tokens: [false, false, false, false],
+      player2Tokens:[false, false, false, false]
+
     }
 
     this.lancerDee = this.lancerDee.bind(this)
     this.renderVictory = this.renderVictory.bind(this)
   }
 
- 
-  lancerDee() {
+
+  lancerDee(player) {
     const dee = Math.floor(Math.random() * (6 - 1)) + 1;
-    console.log("numDEE :",dee);
-    
-    this.setState({
-      numDee: dee,
-      numCase: this.state.numCase + dee
-    })
-   
+    console.log("numDEE :", dee);
+
+    if (player === "player1") {
+      this.setState({
+        numDee: dee,
+        numCase: this.state.numCase + dee
+      })
+    } else if (player === "player2") {
+      this.setState({
+        numDee2: dee,
+        numCase2: this.state.numCase2 + dee
+      })
+    }
   }
-    // lancerDee2() {
-    //   const dee2 = Math.floor(Math.random() * (6 - 1)) + 1;
-
-    //   this.setState({
-    //     numDee2: dee2,
-    //     numCase2: this.state.numCase2 + dee2
-    //   })
-    // }
-
-
 
   // Bonus
   // go() {
@@ -51,15 +50,49 @@ class App extends React.Component {
   //   }
   // }
 
+
+
+
+
+
   renderCircles(n, p) {
     let circlesArray = []
 
-    for (let i = 0; i < 4; i++) {
+    console.log("n", n);
+    console.log("p", p);
+
+    
+
 
       for (let index = n; index <= p; index++) {
-        circlesArray.push(<Circle circleColor={this.state.numCase == index ? "white" : "black"} />)
+        // console.log("index renderCircles", index);
 
-        if (this.state.numCase > 37) {
+        // circlesArray.push(<Circle circleColor="black" />)
+
+        // if (this.state.numCase==index){
+        //   return  circlesArray.push(<Circle circleColor="white"/>)
+        // }else  if(this.state.numCase2==index){
+        //  return circlesArray.push(<Circle circleColor="red"/>)
+        // }else{
+        //   circlesArray.push(<Circle circleColor="black"/>)
+        // }
+        // if(this.state.numCase){
+        //   circlesArray.push(<Circle circleColor={this.state.numCase == index ? "white" : "black"} />)
+        // }
+
+        if (this.state.numCase2 === index) {
+          // circlesArray.splice(index - 1, 1, <Circle circleColor="red" />)
+          circlesArray.push(<Circle key={index} circleColor="red" />)
+        } else if (this.state.numCase === index) {
+          // circlesArray.splice(index - 1, 1, <Circle circleColor="blue" />)
+          circlesArray.push(<Circle key={index} circleColor="blue" />)
+        } else {
+          circlesArray.push(<Circle key={index} circleColor="black" />)
+        }
+
+        // console.log("cicle:", circlesArray)
+
+        if (this.state.numCase > 37 ) {
           // console.log(circlesArray[37]);
 
           const arrayTokens = [...this.state.player1Tokens]
@@ -68,24 +101,37 @@ class App extends React.Component {
           arrayTokens[indexFirstFalse] = true
 
           this.setState({
+            
             numCase: 0,
             player1Tokens: arrayTokens
           })
+        }else if (this.state.numCase2>37){
+          const arrayTokens2=[...this.state.player2Tokens]
+          const indexSecondFalse=arrayTokens2.indexOf(false)
+          arrayTokens2[indexSecondFalse]=true
+          this.setState({
+            numCase2:0,
+            player2Tokens:arrayTokens2
+
+          })
+
+
         }
-        //  console.log(this.state.numCase);
+       
       }
-    
-      //  console.log(this.state.numCase);
-     
+
+      
       return circlesArray
-    }
+    
   }
+
   renderVictory() {
-    if ( this.state.player1Tokens.indexOf (false) === -1 ) {
-     return(<div>
-       <h1>Winner</h1>
-     </div>)}else{
-       return  (
+    if (this.state.player1Tokens.indexOf(false) === -1 || this.state.player2Tokens.indexOf(false)=== -1) {
+      return (<div>
+        <h1>Winner</h1>
+      </div>)
+    } else {
+      return (
         <div>
           <div id="jeu">
             <div id="col1">
@@ -107,15 +153,11 @@ class App extends React.Component {
             <div className="containerP1">
               <div className="divchildP1">
                 <div >
-                  {/* {this.renderCircles(37,3)} */}
-                  {/* <i class="fas fa-circle" style={{color: this.state.numCase > 37 ? "white" : "black"}}></i> */}
-
+                 
                   <Circle circleColor={this.state.player1Tokens[0] /* === true */ ? "white" : "black"} />
                   <Circle circleColor={this.state.player1Tokens[1] /* === true */ ? "white" : "black"} />
 
-                  {/* <i class="fas fa-circle" style={{ color: this.state.numCase >= 37 ? "white" : "black" }}></i> */}
-                  {/* <i class="fas fa-circle" style={{ color: this.state.numCase > 74 ? "white" : "black" }}></i> */}
-
+                  
                 </div>
 
                 <div >
@@ -124,40 +166,45 @@ class App extends React.Component {
                 </div>
               </div>
 
-             
+
 
             </div>
 
             <div className="containerP2">
               <div className="divchildP2">
                 <div >
-                  {/* <i class="fas fa-circle" style={{color: this.state.numCase == 1 ? "white" : "black"}}></i>
-          <i class="fas fa-circle" style={{color: this.state.numCase == 2 ? "white" : "black"}}></i> */}
+                <Circle circleColor={this.state.player2Tokens[0] /* === true */ ? "red" : "black"} />
+                  <Circle circleColor={this.state.player2Tokens[1] /* === true */ ? "red" : "black"} />
+
+                  
 
                 </div>
 
                 <div >
-                  {/* <i class="fas fa-circle" style={{color: this.state.numCase == 11 ? "white" : "black"}}></i>
-          <i class="fas fa-circle" style={{color: this.state.numCase == 12 ? "white" : "black"}}></i> */}
+                <Circle circleColor={this.state.player2Tokens[2] /* === true */ ? "red" : "black"} />
+                  <Circle circleColor={this.state.player2Tokens[3] /* === true */ ? "red" : "black"} />
+
+                  
                 </div>
               </div>
             </div>
 
-          
 
-            <p className="numeroDee"> {this.state.numDee} </p>
-          
+
+            <p className="numeroDee"> Dee 1: {this.state.numDee} - Dee 2: {this.state.numDee2} </p>
+            {/* <p className="numeroDee"> {this.state.numDee2} </p> */}
+
 
 
 
           </div>
 
           <div>
-            <button className="b1  " onClick={this.lancerDee}>Player 1</button>
+            <button className="b1" onClick={() => this.lancerDee("player1")}>Player 1</button>
             <p></p>
           </div>
           <div>
-            <button className="b2" onClick={this.lancerDee2}>Player 2</button>
+            <button className="b2" onClick={() => this.lancerDee("player2")}>Player 2</button>
             <p></p>
           </div>
 
@@ -167,22 +214,22 @@ class App extends React.Component {
       </div> */}
         </div>
       )
-     }
     }
+  }
 
-      render() {
+  render() {
 
 
-        console.log("this.state.numCase", this.state.numCase);
-        console.log("index of", this.state.player1Tokens.indexOf(false));
+    // console.log("this.state.numCase", this.state.numCase);
+    // console.log("index of", this.state.player1Tokens.indexOf(false));
 
-        return (
-          <div>{this.renderVictory()}</div>
-        )
-      }
+    return (
+      <div>{this.renderVictory()}</div>
+    )
+  }
 
-    } 
-  
+}
+
 
 
 export default App
