@@ -12,25 +12,31 @@ class App extends React.Component {
       numCase: 0,
       numCase2: 0,
       player1Tokens: [false, false, false, false]
+      
     }
 
     this.lancerDee = this.lancerDee.bind(this)
   }
 
+ 
   lancerDee() {
     const dee = Math.floor(Math.random() * (6 - 1)) + 1;
-
+    console.log("numDEE :",dee);
+    
     this.setState({
+      numDee: dee,
       numCase: this.state.numCase + dee
     })
+   
   }
-  //   lancerDee2() {
-  //     const dee = Math.floor(Math.random() * (6 - 1)) + 1;
+    // lancerDee2() {
+    //   const dee2 = Math.floor(Math.random() * (6 - 1)) + 1;
 
-  //     this.setState({
-  //       numCase2: this.state.numCase2 + dee
-  //     })
-  //   }
+    //   this.setState({
+    //     numDee2: dee2,
+    //     numCase2: this.state.numCase2 + dee2
+    //   })
+    // }
 
 
 
@@ -67,11 +73,14 @@ class App extends React.Component {
         }
         //  console.log(this.state.numCase);
       }
-
-
+    
+      //  console.log(this.state.numCase);
+     
       return circlesArray
     }
   }
+
+ 
 
   render() {
 
@@ -111,11 +120,14 @@ class App extends React.Component {
                 {/* <i class="fas fa-circle" style={{ color: this.state.numCase > 74 ? "white" : "black" }}></i> */}
 
               </div>
-
+             
               <div >
               <Circle circleColor={this.state.player1Tokens[2] /* === true */ ? "white" : "black"} />
               <Circle circleColor={this.state.player1Tokens[3] /* === true */ ? "white" : "black"} />
               </div>
+
+             
+
             </div>
           </div>
 
@@ -134,13 +146,18 @@ class App extends React.Component {
             </div>
           </div>
 
+          
+
+            <p className="numeroDee"> {this.state.numDee} </p>
+          
+
 
 
         </div>
 
         <div>
           <button className="b1  " onClick={this.lancerDee}>Player 1</button>
-          <p></p>
+          
         </div>
         <div>
           <button className="b2" onClick={this.lancerDee2}>Player 2</button>
