@@ -12,26 +12,32 @@ class App extends React.Component {
       numCase: 0,
       numCase2: 0,
       player1Tokens: [false, false, false, false]
+      
     }
 
     this.lancerDee = this.lancerDee.bind(this)
     this.renderVictory = this.renderVictory.bind(this)
   }
 
+ 
   lancerDee() {
     const dee = Math.floor(Math.random() * (6 - 1)) + 1;
-
+    console.log("numDEE :",dee);
+    
     this.setState({
+      numDee: dee,
       numCase: this.state.numCase + dee
     })
+   
   }
-  //   lancerDee2() {
-  //     const dee = Math.floor(Math.random() * (6 - 1)) + 1;
+    // lancerDee2() {
+    //   const dee2 = Math.floor(Math.random() * (6 - 1)) + 1;
 
-  //     this.setState({
-  //       numCase2: this.state.numCase2 + dee
-  //     })
-  //   }
+    //   this.setState({
+    //     numDee2: dee2,
+    //     numCase2: this.state.numCase2 + dee2
+    //   })
+    // }
 
 
 
@@ -68,8 +74,9 @@ class App extends React.Component {
         }
         //  console.log(this.state.numCase);
       }
-
-
+    
+      //  console.log(this.state.numCase);
+     
       return circlesArray
     }
   }
@@ -116,6 +123,9 @@ class App extends React.Component {
                   <Circle circleColor={this.state.player1Tokens[3] /* === true */ ? "white" : "black"} />
                 </div>
               </div>
+
+             
+
             </div>
 
             <div className="containerP2">
@@ -132,6 +142,11 @@ class App extends React.Component {
                 </div>
               </div>
             </div>
+
+          
+
+            <p className="numeroDee"> {this.state.numDee} </p>
+          
 
 
 

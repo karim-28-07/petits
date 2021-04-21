@@ -66,8 +66,13 @@ p{
 
 .b1{
     float: left;
-    margin: 0 37vmax 0 5vmax;
+   margin: 0 2vmax 0 5vmax;
     background-color: cornflowerblue;
+}
+.numeroDee{
+    text-align: center;
+    padding-top: 13vmax;
+    font-size: 4rem;
 }
 .b2{
     
