@@ -73,3 +73,29 @@ p{
     
     background-color: #ec4444;
 }
+
+.containerP1 {
+    float: left;
+    text-align: center;
+    /* margin: 2vmax 8vmax; */
+    border-radius: 30%;
+    height: 250px;
+    width: 250px;
+    background-color: #4480ec;
+}
+.divchildP1 {
+    padding-top: 35px;
+}
+
+.containerP2 {
+    float: right;
+    text-align: center;
+    /* margin: 2vmax 8vmax; */
+    border-radius: 30%;
+    height: 250px;
+    width: 250px;
+    background-color: #ec4444;
+}
+.divchildP2 {
+    padding-top: 35px;
+}
