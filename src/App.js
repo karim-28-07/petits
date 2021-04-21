@@ -113,8 +113,8 @@ class App extends React.Component {
               </div>
 
               <div >
-                <i class="fas fa-circle" style={{ color: this.state.numCase > 111 ? "white" : "black" }}></i>
-                <i class="fas fa-circle" style={{ color: this.state.numCase > 148 ? "white" : "black" }}></i>
+              <Circle circleColor={this.state.player1Tokens[2] /* === true */ ? "white" : "black"} />
+              <Circle circleColor={this.state.player1Tokens[3] /* === true */ ? "white" : "black"} />
               </div>
             </div>
           </div>
