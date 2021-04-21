@@ -15,6 +15,7 @@ class App extends React.Component {
     }
 
     this.lancerDee = this.lancerDee.bind(this)
+    this.renderVictory = this.renderVictory.bind(this)
   }
 
   lancerDee() {
@@ -51,7 +52,7 @@ class App extends React.Component {
 
       for (let index = n; index <= p; index++) {
         circlesArray.push(<Circle circleColor={this.state.numCase == index ? "white" : "black"} />)
-        
+
         if (this.state.numCase > 37) {
           // console.log(circlesArray[37]);
 
@@ -60,10 +61,10 @@ class App extends React.Component {
 
           arrayTokens[indexFirstFalse] = true
 
-          this.setState({ 
+          this.setState({
             numCase: 0,
             player1Tokens: arrayTokens
-           })
+          })
         }
         //  console.log(this.state.numCase);
       }
@@ -72,91 +73,102 @@ class App extends React.Component {
       return circlesArray
     }
   }
+  renderVictory() {
+    if ( this.state.player1Tokens.indexOf (false) === -1 ) {
+     return(<div>
+       <h1>Winner</h1>
+     </div>)}else{
+       return  (
+        <div>
+          <div id="jeu">
+            <div id="col1">
+              {this.renderCircles(1, 10)}
+            </div>
 
-  render() {
+            <div id="col2">
+              {this.renderCircles(11, 18)}
+            </div>
 
+            <div id="col3">
+              {this.renderCircles(19, 28)}
+            </div>
 
-    console.log("this.state.numCase", this.state.numCase);
-    console.log("index of", this.state.player1Tokens.indexOf(false));
+            <div id="col4">
+              {this.renderCircles(29, 36)}
+            </div>
 
-    return (
-      <div>
-        <div id="jeu">
-          <div id="col1">
-            {this.renderCircles(1, 10)}
-          </div>
+            <div className="containerP1">
+              <div className="divchildP1">
+                <div >
+                  {/* {this.renderCircles(37,3)} */}
+                  {/* <i class="fas fa-circle" style={{color: this.state.numCase > 37 ? "white" : "black"}}></i> */}
 
-          <div id="col2">
-            {this.renderCircles(11, 18)}
-          </div>
+                  <Circle circleColor={this.state.player1Tokens[0] /* === true */ ? "white" : "black"} />
+                  <Circle circleColor={this.state.player1Tokens[1] /* === true */ ? "white" : "black"} />
 
-          <div id="col3">
-            {this.renderCircles(19, 28)}
-          </div>
+                  {/* <i class="fas fa-circle" style={{ color: this.state.numCase >= 37 ? "white" : "black" }}></i> */}
+                  {/* <i class="fas fa-circle" style={{ color: this.state.numCase > 74 ? "white" : "black" }}></i> */}
 
-          <div id="col4">
-            {this.renderCircles(29, 36)}
-          </div>
+                </div>
 
-          <div className="containerP1">
-            <div className="divchildP1">
-              <div >
-                {/* {this.renderCircles(37,3)} */}
-                {/* <i class="fas fa-circle" style={{color: this.state.numCase > 37 ? "white" : "black"}}></i> */}
-
-                <Circle circleColor={this.state.player1Tokens[0] /* === true */ ? "white" : "black"} />
-                <Circle circleColor={this.state.player1Tokens[1] /* === true */ ? "white" : "black"} />
-
-                {/* <i class="fas fa-circle" style={{ color: this.state.numCase >= 37 ? "white" : "black" }}></i> */}
-                {/* <i class="fas fa-circle" style={{ color: this.state.numCase > 74 ? "white" : "black" }}></i> */}
-
-              </div>
-
-              <div >
-              <Circle circleColor={this.state.player1Tokens[2] /* === true */ ? "white" : "black"} />
-              <Circle circleColor={this.state.player1Tokens[3] /* === true */ ? "white" : "black"} />
+                <div >
+                  <Circle circleColor={this.state.player1Tokens[2] /* === true */ ? "white" : "black"} />
+                  <Circle circleColor={this.state.player1Tokens[3] /* === true */ ? "white" : "black"} />
+                </div>
               </div>
             </div>
-          </div>
 
-          <div className="containerP2">
-            <div className="divchildP2">
-              <div >
-                {/* <i class="fas fa-circle" style={{color: this.state.numCase == 1 ? "white" : "black"}}></i>
-            <i class="fas fa-circle" style={{color: this.state.numCase == 2 ? "white" : "black"}}></i> */}
+            <div className="containerP2">
+              <div className="divchildP2">
+                <div >
+                  {/* <i class="fas fa-circle" style={{color: this.state.numCase == 1 ? "white" : "black"}}></i>
+          <i class="fas fa-circle" style={{color: this.state.numCase == 2 ? "white" : "black"}}></i> */}
 
-              </div>
+                </div>
 
-              <div >
-                {/* <i class="fas fa-circle" style={{color: this.state.numCase == 11 ? "white" : "black"}}></i>
-            <i class="fas fa-circle" style={{color: this.state.numCase == 12 ? "white" : "black"}}></i> */}
+                <div >
+                  {/* <i class="fas fa-circle" style={{color: this.state.numCase == 11 ? "white" : "black"}}></i>
+          <i class="fas fa-circle" style={{color: this.state.numCase == 12 ? "white" : "black"}}></i> */}
+                </div>
               </div>
             </div>
+
+
+
           </div>
 
-
-
-        </div>
-
-        <div>
-          <button className="b1  " onClick={this.lancerDee}>Player 1</button>
-          <p></p>
-        </div>
-        <div>
-          <button className="b2" onClick={this.lancerDee2}>Player 2</button>
-          <p></p>
-        </div>
-
-        {/* <div>
-            <button onClick={this.lancerDee}>Lancer le Dé</button>
+          <div>
+            <button className="b1  " onClick={this.lancerDee}>Player 1</button>
             <p></p>
-        </div> */}
-      </div>
-    )
-  }
+          </div>
+          <div>
+            <button className="b2" onClick={this.lancerDee2}>Player 2</button>
+            <p></p>
+          </div>
+
+          {/* <div>
+          <button onClick={this.lancerDee}>Lancer le Dé</button>
+          <p></p>
+      </div> */}
+        </div>
+      )
+     }
+    }
+
+      render() {
 
 
-}
+        console.log("this.state.numCase", this.state.numCase);
+        console.log("index of", this.state.player1Tokens.indexOf(false));
+
+        return (
+          <div>{this.renderVictory()}</div>
+        )
+      }
+
+    } 
+  
+
 
 export default App
 
