@@ -3,6 +3,9 @@ body{
     background-color: white;
     width: 100%;
     height: 800px;
+    margin: auto;
+  width: 65%;
+ 
 }
 i{font-size: 80px;
 -webkit-transition: all 0.5s 0s ease-out;
@@ -13,7 +16,7 @@ transition: all 0.5s 0s ease-out;}
 #jeu{
     position: absolute;
     padding: 20px;
-    margin: 70px;
+    margin: 10px 70px;
      width: 800px;
     height: 800px;
     background-color: cadetblue;
@@ -60,29 +63,33 @@ button{
     
 }
 p{
-    font-size: 32px;
+    font-size: 40px;
     font-family: 'Pacifico', cursive;
+   text-align: center;
+   margin: 0;
+}
+.logo {
+    margin: 0 10vmax;
 }
 
 .b1{
-    float: left;
-   margin: 0 2vmax 0 5vmax;
+    margin-right: 18vmax;
     background-color: cornflowerblue;
 }
 .numeroDee{
     text-align: center;
-    padding-top: 13vmax;
+    padding-top: 18vmax;
     font-size: 4rem;
 }
 .b2{
-    
+  
     background-color: #ec4444;
 }
 
 .containerP1 {
     float: left;
     text-align: center;
-    /* margin: 2vmax 8vmax; */
+  
     border-radius: 30%;
     height: 250px;
     width: 250px;
@@ -95,7 +102,7 @@ p{
 .containerP2 {
     float: right;
     text-align: center;
-    /* margin: 2vmax 8vmax; */
+   
     border-radius: 30%;
     height: 250px;
     width: 250px;
@@ -103,4 +110,11 @@ p{
 }
 .divchildP2 {
     padding-top: 35px;
+}
+
+.spanP1{
+color: #4480ec;
+}
+.spanP2{
+color: #ec4444;
 }
