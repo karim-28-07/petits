@@ -73,12 +73,12 @@ p{
 }
 
 .b1{
-    margin-right: 18vmax;
+    /* margin-right: 18vmax; */
     background-color: cornflowerblue;
 }
 .numeroDee{
     text-align: center;
-    padding-top: 18vmax;
+    padding-top: 20vmax;
     font-size: 4rem;
 }
 .b2{
