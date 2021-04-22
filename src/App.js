@@ -32,6 +32,7 @@ class App extends React.Component {
 
     if (player === 1) {
 
+      // if (this.state.numCase !== 0 || (this.state.player1Tokens.indexOf(true) !== -1 && dee === 6)) {
       if (this.state.numCase !== 0 || dee === 6) {
         this.setState({
           numDee: dee,
@@ -48,7 +49,7 @@ class App extends React.Component {
 
     } else if (player === 2) {
 
-      if (this.state.numCase !== 0 || dee === 6) {
+      if (this.state.numCase2 !== 0 || dee === 6) {
         this.setState({
           numDee2: dee,
           numCase2: this.state.numCase2 + dee,
@@ -92,7 +93,6 @@ class App extends React.Component {
       }
 
       if (this.state.numCase > 37) {
-
         const arrayTokens = [...this.state.player1Tokens]
         const indexFirstFalse = arrayTokens.indexOf(false)
 
@@ -100,15 +100,17 @@ class App extends React.Component {
 
         this.setState({
 
-          numCase: 0,
+          numCase: 1,
           player1Tokens: arrayTokens
         })
       } else if (this.state.numCase2 > 37) {
         const arrayTokens2 = [...this.state.player2Tokens]
         const indexSecondFalse = arrayTokens2.indexOf(false)
+        
         arrayTokens2[indexSecondFalse] = true
+        
         this.setState({
-          numCase2: 0,
+          numCase2: 1,
           player2Tokens: arrayTokens2
 
         })
