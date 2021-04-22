@@ -144,14 +144,7 @@ class App extends React.Component {
 
     }
 
-
     return circlesArray
-    width: 80px;
-    height: 80px;
-    background: linear-gradient(
-181deg
-, #FFC0CB 50%, #00FFFF 50%);
-    border-radius: 50%;
 
   }
 
