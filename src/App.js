@@ -1,7 +1,7 @@
 import React from "react";
-// import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css'
 import Circle from "./components/Circle.jsx"
+import Winner from "./pic/winner.gif"
 
 class App extends React.Component {
   constructor(props) {
@@ -82,10 +82,10 @@ class App extends React.Component {
 
         if (this.state.numCase2 === index) {
           // circlesArray.splice(index - 1, 1, <Circle circleColor="red" />)
-          circlesArray.push(<Circle key={index} circleColor="red" />)
+          circlesArray.push(<Circle key={index} circleColor="#ec4444" />)
         } else if (this.state.numCase === index) {
           // circlesArray.splice(index - 1, 1, <Circle circleColor="blue" />)
-          circlesArray.push(<Circle key={index} circleColor="blue" />)
+          circlesArray.push(<Circle key={index} circleColor="#4480ec" />)
         } else {
           circlesArray.push(<Circle key={index} circleColor="black" />)
         }
@@ -128,7 +128,8 @@ class App extends React.Component {
   renderVictory() {
     if (this.state.player1Tokens.indexOf(false) === -1 || this.state.player2Tokens.indexOf(false)=== -1) {
       return (<div>
-        <h1>Winner</h1>
+        <p>You Win !</p>
+        <div  style={{background: `url(${Winner})`, height:`${window.innerHeight}px`, backgroundRepeat:"no-repeat", marginLeft: "7vmax" }} />
       </div>)
     } else {
       return (
@@ -191,7 +192,16 @@ class App extends React.Component {
 
 
 
-            <p className="numeroDee"> Dee 1: {this.state.numDee} - Dee 2: {this.state.numDee2} </p>
+            <div className="numeroDee">
+
+              <span className="spanP1">{this.state.numDee}</span>
+              <i class="fas fa-chess-knight logo"></i>
+              
+              <span className="spanP2">{this.state.numDee2}</span>  
+              <p>Petit Chevaux</p>
+              <button className="b1" onClick={() => this.lancerDee("player1")}>Player 1</button>
+              <button className="b2" onClick={() => this.lancerDee("player2")}>Player 2</button>
+              </div>
             {/* <p className="numeroDee"> {this.state.numDee2} </p> */}
 
 
@@ -199,14 +209,7 @@ class App extends React.Component {
 
           </div>
 
-          <div>
-            <button className="b1" onClick={() => this.lancerDee("player1")}>Player 1</button>
-            <p></p>
-          </div>
-          <div>
-            <button className="b2" onClick={() => this.lancerDee("player2")}>Player 2</button>
-            <p></p>
-          </div>
+         
 
           {/* <div>
           <button onClick={this.lancerDee}>Lancer le Dé</button>
