@@ -1,120 +1,125 @@
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
 body{
     background-color: white;
     width: 100%;
     height: 800px;
     margin: auto;
-  width: 65%;
- 
+    width: 65%;
 }
-i{font-size: 80px;
--webkit-transition: all 0.5s 0s ease-out;
--moz-transition: all 0.5s 0s ease-out;
--o-transition: all 0.5s 0s ease-out;
-transition: all 0.5s 0s ease-out;}
 
-#jeu{
-    position: absolute;
+i {
+    font-size: 80px;
+    -webkit-transition: all 0.5s 0s ease-out;
+    -moz-transition: all 0.5s 0s ease-out;
+    -o-transition: all 0.5s 0s ease-out;
+    transition: all 0.5s 0s ease-out;
+}
+
+#jeu {
+    display: flex;
     padding: 20px;
     margin: 10px 70px;
-     width: 800px;
+    width: 800px;
     height: 800px;
     background-color: cadetblue;
     border: 2px outset white;
     border-radius: 20px;
     -webkit-box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.4); 
-box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.4);
+    box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.4);
 }
 
-#monDee{
-    position: absolute;
+#monDee {
     width: 300px;
     margin-left: 50px;
 }
 
-#col1{
+#col1 {
      display: flex;
 }
 
-#col2{
-    float: right;
-     display: grid;
+#col2 {
+    /* display: grid;
     grid-template-columns: 1fr;
-     grid-row: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-row: 1fr 1fr 1fr 1fr 1fr 1fr; */
+
+    display: flex;
+    flex-direction: column;
 }
 
-#col3{
-    position: absolute;
+#col3 {
     bottom: 20px;
-     display: flex;
+    display: flex;
     flex-direction: row-reverse;
 }
 
-#col4{
-    float: left;
-     display: flex;
+#col4 {
+    display: flex;
     flex-direction: column-reverse;
 }
 
-button{
+button {
     font-family: 'Pacifico', cursive;
     font-size: 32px;
-    border-radius: 20px;
-    
+    border-radius: 20px;    
 }
-p{
+
+p {
     font-size: 40px;
     font-family: 'Pacifico', cursive;
-   text-align: center;
-   margin: 0;
+    text-align: center;
+    margin: 0;
 }
+
 .logo {
     margin: 0 10vmax;
 }
 
-.b1{
+.b1 {
     margin-right: 18vmax;
     background-color: cornflowerblue;
 }
-.numeroDee{
+
+.numeroDee {
     text-align: center;
     padding-top: 18vmax;
     font-size: 4rem;
 }
-.b2{
+
+.b2 {
   
     background-color: #ec4444;
 }
 
 .containerP1 {
-    float: left;
     text-align: center;
-  
     border-radius: 30%;
     height: 250px;
     width: 250px;
     background-color: #4480ec;
 }
+
 .divchildP1 {
     padding-top: 35px;
 }
 
 .containerP2 {
-    float: right;
     text-align: center;
-   
     border-radius: 30%;
     height: 250px;
     width: 250px;
     background-color: #ec4444;
 }
+
 .divchildP2 {
     padding-top: 35px;
 }
 
 .spanP1{
-color: #4480ec;
+    color: #4480ec;
 }
+
+
 .spanP2{
-color: #ec4444;
+    color: #ec4444;
 }
