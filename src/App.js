@@ -8,7 +8,6 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      total: 0,
       numDee: 0,
       numCase: 0,
       numDee2: 0,
@@ -26,13 +25,12 @@ class App extends React.Component {
 
   lancerDee() {
     const dee = Math.floor(Math.random() * 6 + 1)
-    console.log("numDEE :", dee);
 
     const player = this.state.currentPlayer
 
     if (player === 1) {
 
-      // if (this.state.numCase !== 0 || (this.state.player1Tokens.indexOf(true) !== -1 && dee === 6)) {
+
       if (this.state.numCase !== 0 || dee === 6) {
         this.setState({
           numDee: dee,
@@ -69,20 +67,6 @@ class App extends React.Component {
     let circlesArray = []
 
     for (let index = n; index <= p; index++) {
-      // console.log("index renderCircles", index);
-
-      // circlesArray.push(<Circle circleColor="black" />)
-
-      // if (this.state.numCase==index){
-      //   return  circlesArray.push(<Circle circleColor="white"/>)
-      // }else  if(this.state.numCase2==index){
-      //  return circlesArray.push(<Circle circleColor="red"/>)
-      // }else{
-      //   circlesArray.push(<Circle circleColor="black"/>)
-      // }
-      // if(this.state.numCase){
-      //   circlesArray.push(<Circle circleColor={this.state.numCase == index ? "white" : "black"} />)
-      // }
 
       if (this.state.numCase2 === index) {
         circlesArray.push(<Circle key={index} circleColor="#ec4444" />)
@@ -106,9 +90,9 @@ class App extends React.Component {
       } else if (this.state.numCase2 > 37) {
         const arrayTokens2 = [...this.state.player2Tokens]
         const indexSecondFalse = arrayTokens2.indexOf(false)
-        
+
         arrayTokens2[indexSecondFalse] = true
-        
+
         this.setState({
           numCase2: 1,
           player2Tokens: arrayTokens2
@@ -123,11 +107,19 @@ class App extends React.Component {
   }
 
   renderVictory() {
-    if (this.state.player1Tokens.indexOf(false) === -1 || this.state.player2Tokens.indexOf(false) === -1) {
+    if (this.state.player1Tokens.indexOf(false) === -1) {
       return (<div>
         <p>You Win !</p>
+        <p>Player 1</p>
         <div style={{ background: `url(${Winner})`, height: `${window.innerHeight}px`, backgroundRepeat: "no-repeat", marginLeft: "7vmax" }} />
       </div>)
+    } else if (this.state.player2Tokens.indexOf(false) === -1) {
+      return (<div>
+        <p>You Win !</p>
+        <p>Player 2</p>
+        <div style={{ background: `url(${Winner})`, height: `${window.innerHeight}px`, backgroundRepeat: "no-repeat", marginLeft: "7vmax" }} />
+      </div>)
+
     } else {
       return (
         <div>
@@ -151,7 +143,7 @@ class App extends React.Component {
                 <div className="containerP1">
                   <div className="divchildP1">
                     <div >
-                      <Circle circleColor={this.state.player1Tokens[0] /* === true */ ? "white" : "black"} />
+                      <Circle circleColor={this.state.player1Tokens[0] ? "white" : "black"} />
                       <Circle circleColor={this.state.player1Tokens[1] ? "white" : "black"} />
                     </div>
 
@@ -183,7 +175,7 @@ class App extends React.Component {
 
                   <span className="spanP2">{this.state.numDee2}</span>
                   <p>Petit Chevaux</p>
-                  <button className={this.state.currentPlayer === 1 ? "b1" : "b2"} onClick={this.lancerDee}>Tirer dée du jouer {this.state.currentPlayer}</button>
+                  <button className={this.state.currentPlayer === 1 ? "b1" : "b2"} onClick={this.lancerDee}>Tirer le dée du joueur {this.state.currentPlayer}</button>
                 </div>
 
               </div>
