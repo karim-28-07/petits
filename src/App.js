@@ -1,14 +1,16 @@
 import React from "react";
 import './App.css'
 import Circle from "./components/Circle.jsx"
-import Winner from "./pic/winner.gif"
+import Winner from "./assets/pic/winner.gif"
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 class App extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      total: 0,
+      
       numDee: 0,
       numCase: 0,
       numDee2: 0,
@@ -23,6 +25,7 @@ class App extends React.Component {
     this.renderVictory = this.renderVictory.bind(this)
   }
 
+  
 
   lancerDee() {
     const dee = Math.floor(Math.random() * 6 + 1)
@@ -32,7 +35,6 @@ class App extends React.Component {
 
     if (player === 1) {
 
-      // if (this.state.numCase !== 0 || (this.state.player1Tokens.indexOf(true) !== -1 && dee === 6)) {
       if (this.state.numCase !== 0 || dee === 6) {
         this.setState({
           numDee: dee,
@@ -69,20 +71,7 @@ class App extends React.Component {
     let circlesArray = []
 
     for (let index = n; index <= p; index++) {
-      // console.log("index renderCircles", index);
-
-      // circlesArray.push(<Circle circleColor="black" />)
-
-      // if (this.state.numCase==index){
-      //   return  circlesArray.push(<Circle circleColor="white"/>)
-      // }else  if(this.state.numCase2==index){
-      //  return circlesArray.push(<Circle circleColor="red"/>)
-      // }else{
-      //   circlesArray.push(<Circle circleColor="black"/>)
-      // }
-      // if(this.state.numCase){
-      //   circlesArray.push(<Circle circleColor={this.state.numCase == index ? "white" : "black"} />)
-      // }
+    
 
       if (this.state.numCase2 === index) {
         circlesArray.push(<Circle key={index} circleColor="#ec4444" />)
@@ -118,20 +107,28 @@ class App extends React.Component {
       }
 
     }
-
+  
     return circlesArray
   }
 
   renderVictory() {
-    if (this.state.player1Tokens.indexOf(false) === -1 || this.state.player2Tokens.indexOf(false) === -1) {
-      return (<div>
-        <p>You Win !</p>
-        <div style={{ background: `url(${Winner})`, height: `${window.innerHeight}px`, backgroundRepeat: "no-repeat", marginLeft: "7vmax" }} />
+    if (this.state.player1Tokens.indexOf(false) === -1) {
+      return (<div className="winner" >
+        <p className="pWins"> <span className="spanP1">Player 1</span> Wins !</p>
+        <div className="offset-3" style={{ background: `url(${Winner})`, height: `${500}px`, backgroundRepeat: "no-repeat"}} />
       </div>)
+    } else if (this.state.player2Tokens.indexOf(false) === -1) {
+      return (<div className="winner" >
+                <p className="pWins"> <span className="spanP2">Player 2</span> Wins !</p>
+        <div className="offset-3" style={{ background: `url(${Winner})`, height: `${500}px`, backgroundRepeat: "no-repeat" }} />
+      </div>)
+
     } else {
       return (
-        <div>
-          <div id="jeu">
+        
+        <div className=" bg-g">
+          <div className="offset-2 py-4">
+          <div  id="jeu">
 
             <div className="grid-game">
 
@@ -151,13 +148,13 @@ class App extends React.Component {
                 <div className="containerP1">
                   <div className="divchildP1">
                     <div >
-                      <Circle circleColor={this.state.player1Tokens[0] /* === true */ ? "white" : "black"} />
-                      <Circle circleColor={this.state.player1Tokens[1] ? "white" : "black"} />
+                      <Circle circleColor={this.state.player1Tokens[0] ? "#4646e8" : "black"} />
+                      <Circle circleColor={this.state.player1Tokens[1] ? "#4646e8" : "black"} />
                     </div>
 
                     <div >
-                      <Circle circleColor={this.state.player1Tokens[2] ? "white" : "black"} />
-                      <Circle circleColor={this.state.player1Tokens[3] ? "white" : "black"} />
+                      <Circle circleColor={this.state.player1Tokens[2] ? "#4646e8" : "black"} />
+                      <Circle circleColor={this.state.player1Tokens[3] ? "#4646e8" : "black"} />
                     </div>
                   </div>
                 </div>
@@ -165,25 +162,26 @@ class App extends React.Component {
                 <div className="containerP2">
                   <div className="divchildP2">
                     <div >
-                      <Circle circleColor={this.state.player2Tokens[0] ? "red" : "black"} />
-                      <Circle circleColor={this.state.player2Tokens[1] ? "red" : "black"} />
+                      <Circle circleColor={this.state.player2Tokens[0] ? "#c30c0c" : "black"} />
+                      <Circle circleColor={this.state.player2Tokens[1] ? "#c30c0c" : "black"} />
                     </div>
 
                     <div >
-                      <Circle circleColor={this.state.player2Tokens[2] ? "red" : "black"} />
-                      <Circle circleColor={this.state.player2Tokens[3] ? "red" : "black"} />
+                      <Circle circleColor={this.state.player2Tokens[2] ? "#c30c0c" : "black"} />
+                      <Circle circleColor={this.state.player2Tokens[3] ? "#c30c0c" : "black"} />
                     </div>
                   </div>
                 </div>
 
                 <div className="numeroDee">
 
+                 
                   <span className="spanP1">{this.state.numDee}</span>
-                  <i className="fas fa-chess-knight logo"></i>
+                  <i className="fas fa-chess-knight logo "></i>
 
                   <span className="spanP2">{this.state.numDee2}</span>
-                  <p>Petit Chevaux</p>
-                  <button className={this.state.currentPlayer === 1 ? "b1" : "b2"} onClick={this.lancerDee}>Tirer dée du jouer {this.state.currentPlayer}</button>
+                  <p className="rainbow">Petit Chevaux</p>
+                  <button  className={this.state.currentPlayer === 1 ? "b1" : "b2"} onClick={this.lancerDee}>Tirer dée du jouer {this.state.currentPlayer}</button>
                 </div>
 
               </div>
@@ -203,7 +201,7 @@ class App extends React.Component {
             </div>
 
           </div>
-
+          </div>
         </div>
       )
     }
