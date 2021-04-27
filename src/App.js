@@ -1,8 +1,9 @@
 import React from "react";
 import './App.css'
 import Circle from "./components/Circle.jsx"
-import Winner from "./assets/pic/winner.gif"
+
 import 'bootstrap/dist/css/bootstrap.min.css';
+import WinnerGame from "./components/WinnerGame"
 
 
 class App extends React.Component {
@@ -10,7 +11,7 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      
+
       numDee: 0,
       numCase: 0,
       numDee2: 0,
@@ -24,8 +25,6 @@ class App extends React.Component {
     this.lancerDee = this.lancerDee.bind(this)
     this.renderVictory = this.renderVictory.bind(this)
   }
-
-  
 
   lancerDee() {
     const dee = Math.floor(Math.random() * 6 + 1)
@@ -41,6 +40,7 @@ class App extends React.Component {
           numCase: this.state.numCase + dee,
           currentPlayer: 2
         })
+
       } else {
         this.setState({
           numDee: dee,
@@ -57,6 +57,7 @@ class App extends React.Component {
           numCase2: this.state.numCase2 + dee,
           currentPlayer: 1
         })
+
       } else {
         this.setState({
           numDee2: dee,
@@ -68,10 +69,11 @@ class App extends React.Component {
   }
 
   renderCircles(n, p) {
+
     let circlesArray = []
 
     for (let index = n; index <= p; index++) {
-    
+
 
       if (this.state.numCase2 === index) {
         circlesArray.push(<Circle key={index} circleColor="#ec4444" />)
@@ -95,9 +97,9 @@ class App extends React.Component {
       } else if (this.state.numCase2 > 37) {
         const arrayTokens2 = [...this.state.player2Tokens]
         const indexSecondFalse = arrayTokens2.indexOf(false)
-        
+
         arrayTokens2[indexSecondFalse] = true
-        
+
         this.setState({
           numCase2: 1,
           player2Tokens: arrayTokens2
@@ -107,113 +109,109 @@ class App extends React.Component {
       }
 
     }
-  
+
     return circlesArray
   }
 
   renderVictory() {
-    if (this.state.player1Tokens.indexOf(false) === -1) {
-      return (<div className="winner" >
-        <p className="pWins"> <span className="spanP1">Player 1</span> Wins !</p>
-        <div className="offset-3" style={{ background: `url(${Winner})`, height: `${500}px`, backgroundRepeat: "no-repeat"}} />
-      </div>)
-    } else if (this.state.player2Tokens.indexOf(false) === -1) {
-      return (<div className="winner" >
-                <p className="pWins"> <span className="spanP2">Player 2</span> Wins !</p>
-        <div className="offset-3" style={{ background: `url(${Winner})`, height: `${500}px`, backgroundRepeat: "no-repeat" }} />
-      </div>)
+
+    if (this.state.player1Tokens.indexOf(false) === -1 || this.state.player2Tokens.indexOf(false) === -1) {
+
+      return <WinnerGame player1Tokens = {this.state.player1Tokens} player2Tokens = {this.state.player2Tokens} />
 
     } else {
+      
       return (
-        
+
+
+
         <div className=" bg-g">
           <div className="offset-2 py-4">
-          <div  id="jeu">
+            <div id="jeu">
 
-            <div className="grid-game">
+              <div className="grid-game">
 
-              {this.renderCircles(1, 1)}
+                {this.renderCircles(1, 1)}
 
-              <div className="flex">
-                {this.renderCircles(2, 9)}
-              </div>
+                <div className="flex">
+                  {this.renderCircles(2, 9)}
+                </div>
 
-              {this.renderCircles(10, 10)}
+                {this.renderCircles(10, 10)}
 
-              <div className="flex grid-item-4">
-                {this.renderCircles(29, 36)}
-              </div>
+                <div className="flex grid-item-4">
+                  {this.renderCircles(29, 36)}
+                </div>
 
-              <div className="flex grid-item-5">
-                <div className="containerP1">
-                  <div className="divchildP1">
-                    <div >
-                      <Circle circleColor={this.state.player1Tokens[0] ? "#4646e8" : "black"} />
-                      <Circle circleColor={this.state.player1Tokens[1] ? "#4646e8" : "black"} />
-                    </div>
+                <div className="flex grid-item-5">
+                  <div className="containerP1">
+                    <div className="divchildP1">
+                      <div >
+                        <Circle circleColor={this.state.player1Tokens[0] ? "#4646e8" : "black"} />
+                        <Circle circleColor={this.state.player1Tokens[1] ? "#4646e8" : "black"} />
+                      </div>
 
-                    <div >
-                      <Circle circleColor={this.state.player1Tokens[2] ? "#4646e8" : "black"} />
-                      <Circle circleColor={this.state.player1Tokens[3] ? "#4646e8" : "black"} />
+                      <div >
+                        <Circle circleColor={this.state.player1Tokens[2] ? "#4646e8" : "black"} />
+                        <Circle circleColor={this.state.player1Tokens[3] ? "#4646e8" : "black"} />
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                <div className="containerP2">
-                  <div className="divchildP2">
-                    <div >
-                      <Circle circleColor={this.state.player2Tokens[0] ? "#c30c0c" : "black"} />
-                      <Circle circleColor={this.state.player2Tokens[1] ? "#c30c0c" : "black"} />
-                    </div>
+                  <div className="containerP2">
+                    <div className="divchildP2">
+                      <div >
+                        <Circle circleColor={this.state.player2Tokens[0] ? "#c30c0c" : "black"} />
+                        <Circle circleColor={this.state.player2Tokens[1] ? "#c30c0c" : "black"} />
+                      </div>
 
-                    <div >
-                      <Circle circleColor={this.state.player2Tokens[2] ? "#c30c0c" : "black"} />
-                      <Circle circleColor={this.state.player2Tokens[3] ? "#c30c0c" : "black"} />
+                      <div >
+                        <Circle circleColor={this.state.player2Tokens[2] ? "#c30c0c" : "black"} />
+                        <Circle circleColor={this.state.player2Tokens[3] ? "#c30c0c" : "black"} />
+                      </div>
                     </div>
                   </div>
+
+                  <div className="numeroDee">
+
+
+                    <span className="spanP1">{this.state.numDee}</span>
+                    <i className="fas fa-chess-knight logo "></i>
+
+                    <span className="spanP2">{this.state.numDee2}</span>
+                    <p className="rainbow">Petit Chevaux</p>
+                    <button className={this.state.currentPlayer === 1 ? "b1" : "b2"} onClick={this.lancerDee}>Tirer dée du jouer {this.state.currentPlayer}</button>
+                  </div>
+
                 </div>
 
-                <div className="numeroDee">
-
-                 
-                  <span className="spanP1">{this.state.numDee}</span>
-                  <i className="fas fa-chess-knight logo "></i>
-
-                  <span className="spanP2">{this.state.numDee2}</span>
-                  <p className="rainbow">Petit Chevaux</p>
-                  <button  className={this.state.currentPlayer === 1 ? "b1" : "b2"} onClick={this.lancerDee}>Tirer dée du jouer {this.state.currentPlayer}</button>
+                <div className="flex grid-item-6">
+                  {this.renderCircles(11, 18)}
                 </div>
 
+                {this.renderCircles(28, 28)}
+
+                <div className="flex grid-item-8">
+                  {this.renderCircles(20, 27)}
+                </div>
+
+                {this.renderCircles(19, 19)}
+
               </div>
-
-              <div className="flex grid-item-6">
-                {this.renderCircles(11, 18)}
-              </div>
-
-              {this.renderCircles(28, 28)}
-
-              <div className="flex grid-item-8">
-                {this.renderCircles(20, 27)}
-              </div>
-
-              {this.renderCircles(19, 19)}
 
             </div>
-
-          </div>
           </div>
         </div>
+
       )
     }
+
   }
-
   render() {
-
     return (
       <div>{this.renderVictory()}</div>
     )
   }
-
 }
 
 
