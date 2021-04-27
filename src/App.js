@@ -4,6 +4,7 @@ import Circle from "./components/Circle.jsx"
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import WinnerGame from "./components/WinnerGame"
+import PlayerContainer from "./components/PlayerContainer";
 
 
 class App extends React.Component {
@@ -16,8 +17,8 @@ class App extends React.Component {
       numCase: 0,
       numDee2: 0,
       numCase2: 0,
-      player1Tokens: [false, false, false, false],
-      player2Tokens: [false, false, false, false],
+      player1Tokens: [false],
+      player2Tokens: [false],
       currentPlayer: 1
 
     }
@@ -144,7 +145,11 @@ class App extends React.Component {
                 </div>
 
                 <div className="flex grid-item-5">
-                  <div className="containerP1">
+                  <PlayerContainer firstDiv = "containerP1" secondDiv = "divchildP1" 
+                  playerTokens = {this.state.player1Tokens}  />
+                  <PlayerContainer firstDiv = "containerP2" secondDiv= "divchildP2" 
+                  playerTokens = {this.state.player2Tokens} />
+                  {/* <div className="containerP1">
                     <div className="divchildP1">
                       <div >
                         <Circle circleColor={this.state.player1Tokens[0] ? "#4646e8" : "black"} />
@@ -156,9 +161,9 @@ class App extends React.Component {
                         <Circle circleColor={this.state.player1Tokens[3] ? "#4646e8" : "black"} />
                       </div>
                     </div>
-                  </div>
+                  </div> */}
 
-                  <div className="containerP2">
+                  {/* <div className="containerP2">
                     <div className="divchildP2">
                       <div >
                         <Circle circleColor={this.state.player2Tokens[0] ? "#c30c0c" : "black"} />
@@ -168,9 +173,9 @@ class App extends React.Component {
                       <div >
                         <Circle circleColor={this.state.player2Tokens[2] ? "#c30c0c" : "black"} />
                         <Circle circleColor={this.state.player2Tokens[3] ? "#c30c0c" : "black"} />
-                      </div>
-                    </div>
-                  </div>
+                      </div> */}
+                    {/* </div>
+                  </div> */}
 
                   <div className="numeroDee">
 
